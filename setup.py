@@ -45,6 +45,7 @@ setup(
             'markdown',
             'check-manifest',
             'twine',
+            'coverage'
         ]
     },
     entry_points={
