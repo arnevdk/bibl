@@ -30,11 +30,11 @@ def line_length(line_number, line, text):
     :param line_number: The number of the current line in the bibliography
     :param line: The content of the current line in the bibliography
     :param text: The entire bibliography
-    :return: True if no preamble is present or the preambel starts at line 1 of
+    :return: True if no preamble is present or the preamble starts at line 1 of
     the BibTeX file, False otherwise.
     """
     regex = re.compile(r'^\s*@preamble')
-    return not regex.match(line.lower()) or line_number == 0
+    return not regex.match(line.lower()) or line_number == 1
 
 
 @register_entry_rule('D02', 'Possible duplicate entry based on similar titles')
@@ -45,15 +45,17 @@ def title_duplicate(key, entry, database):
     :param entry: The current bibliography entry
     :param database: All bibliography entries
     :return: True if the fuzzy match partial ratio of the title of the current
-    entry with any other entry exceeds 90%, False otherwise.
+    entry with any other entry is lower than 90%, True otherwise.
     """
     if 'title' not in entry.fields:
         return True
     for e in database.entries.values():
+        if e == entry:
+            break
         if 'title' not in e.fields:
             continue
         t1 = unidecode(entry.fields['title']).lower()
         t2 = unidecode(e.fields['title']).lower()
-        if e != entry and fuzz.partial_ratio(t1, t2) > 90:
+        if fuzz.partial_ratio(t1, t2) > 90:
             return False
     return True
