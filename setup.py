@@ -45,7 +45,7 @@ setup(
             'markdown',
             'check-manifest',
             'twine',
-            'coverage'
+            'pytest-cov'
         ]
     },
     entry_points={
