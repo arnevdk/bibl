@@ -31,6 +31,11 @@ unit_test:
   stage: Test
   script:
     - coverage -m unittest discover
+    - coverage xml
+  artifacts:
+    paths:
+      - coverage.xml
+
 
 rule_list:
   stage: Deploy
