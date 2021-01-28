@@ -5,7 +5,7 @@ from bibl.config import get_config
 from bibl.rule import register_entry_rule
 
 
-@register_entry_rule('M00', 'No authors or editors found')
+@register_entry_rule('F00', 'No authors or editors found')
 def authors_present(key, entry, database):
     """Raise a linter warning when an entry has no authors or editors.
 
@@ -20,7 +20,7 @@ def authors_present(key, entry, database):
 
 for entry_type, spec in get_config()['type_spec'].items():
     for req_field in spec['required']:
-        rule_id = 'M01{}{}'.format(entry_type.capitalize(),
+        rule_id = 'F01_{}_{}'.format(entry_type.capitalize(),
                                    req_field.capitalize())
         message = 'Missing required field `{}` for entry type `{}`'
         message = message.format(req_field, entry_type)

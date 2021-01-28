@@ -9,7 +9,7 @@ class TestBase(unittest.TestCase):
         lint("test_data/mit.bib", verbose=False)
 
     def test_jabref(self):
-        lint("test_data/bci.bib", verbose=False)
+        lint("test_data/pass_all.bib", verbose=False)
 
     def test_incorrect_syntax(self):
         lint("test_data/syntax.bib", verbose=False)

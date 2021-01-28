@@ -6,7 +6,7 @@ class TestDatabaseRules(unittest.TestCase):
 
     def test_D00_pass(self):
         set_config('select', ['D00'])
-        result = lint('test_data/bci.bib', verbose=False)
+        result = lint('test_data/pass_all.bib', verbose=False)
         self.assertEqual([], result)
 
     def test_D00_fail(self):
@@ -16,7 +16,7 @@ class TestDatabaseRules(unittest.TestCase):
 
     def test_D01_pass(self):
         set_config('select', ['D01'])
-        result = lint('test_data/bci.bib', verbose=False)
+        result = lint('test_data/pass_all.bib', verbose=False)
         self.assertEqual([], result)
 
     def test_D01_fail(self):
@@ -26,7 +26,7 @@ class TestDatabaseRules(unittest.TestCase):
 
     def test_D02_pass(self):
         set_config('select', ['D02'])
-        result = lint('test_data/bci.bib', verbose=False)
+        result = lint('test_data/pass_all.bib', verbose=False)
         self.assertEqual([], result)
 
     def test_D02_fail(self):

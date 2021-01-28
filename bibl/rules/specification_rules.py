@@ -4,7 +4,7 @@ from bibl.config import get_config
 from bibl.rule import register_entry_rule
 
 
-@register_entry_rule('U00', 'Unrecognized entry type')
+@register_entry_rule('S00', 'Unrecognized entry type')
 def recognized_entry_type(key, entry, database):
     """Raise a linter warning when an entry type is not recognized.
 
@@ -21,7 +21,7 @@ def recognized_entry_type(key, entry, database):
 
 
 for entry_type, spec in get_config()['type_spec'].items():
-    rule_id = 'U01{}'.format(entry_type.capitalize())
+    rule_id = 'S01_{}'.format(entry_type.capitalize())
     message = 'Unrecognized field type for entry type `{}`'.format(entry_type)
 
     @register_entry_rule(rule_id, message)
