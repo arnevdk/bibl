@@ -23,8 +23,8 @@ type_spec:
     required: [ title, booktitle, year ]
     optional: [ volume, number, series, pages, address, month, organization, publisher, key, file ]
   inbook: # A part of a book, usually untitled. May be a chapter (or section, etc.) and/or a range of pages.
-    required: [ title, chapter, pages, publisher, year ]
-    optional: [ volume, number, series, type, address, edition, month, key, file ]
+    required: [ title, publisher, year ]
+    optional: [ booktitle, chapter, pages, volume, number, series, type, address, edition, month, key, file ]
   incollection: # A part of a book having its own title.
     required: [ title, booktitle, publisher, year ]
     optional: [ volume, number, series, type, chapter, pages, address, edition, month, key, file ]

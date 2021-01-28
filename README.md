@@ -63,7 +63,7 @@ Command line option configuration will override configuration provided by a file
 See the default configuration [bibl.yml](https://gitlab.com/arne.vandenkerchove/bibl/-/tree/master/bibl/bibl.yml) for
 all values that can be overwritten in a configuration file.
 
-Some rules, like the various `M01_*` and `U01_*` rules, are procedurally generated based on the `type_spec` setting.
+Some rules, like the various `S02_*` and `S03_*` rules, are procedurally generated based on the `type_spec` setting.
 This setting specifies which entry and field types should be present and can be modified to more easily ignore generated
 rules for specific entry types or fields, or to add custom fields or entry types for which warnings should be given
 while linting.

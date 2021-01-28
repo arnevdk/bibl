@@ -53,6 +53,7 @@ def lint(bibliography: str, verbose: bool = True) -> List[LintWarning]:
 
     rules = load_rules()
 
+
     text_warnings = _apply_text_rules(bibliography, bib_text,
                                       rules.enabled_text_rules)
     entry_warnings = _apply_entry_rules(bibliography, bib_data, bib_text,
