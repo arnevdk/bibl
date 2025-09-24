@@ -12,14 +12,14 @@ jobs:
     name: Static Analysis (flake8)
     runs-on: ubuntu-latest
     container:
-      image: python:3.7
+      image: python:3.9
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.7'
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
@@ -53,14 +53,14 @@ jobs:
     name: Unit Tests
     runs-on: ubuntu-latest
     container:
-      image: python:3.7
+      image: python:3.9
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.7'
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
@@ -82,7 +82,7 @@ jobs:
     name: Deploy Rule List
     runs-on: ubuntu-latest
     container:
-      image: python:3.7
+      image: python:3.9
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
