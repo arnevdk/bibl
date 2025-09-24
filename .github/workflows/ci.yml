@@ -1,4 +1,3 @@
-
 name: CI
 
 on:
@@ -54,6 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: python:3.9
+    needs: flake8
     steps:
       - uses: actions/checkout@v4
 
@@ -83,6 +83,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: python:3.9
+    needs: unit_test
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
