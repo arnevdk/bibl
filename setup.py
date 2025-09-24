@@ -29,11 +29,11 @@ setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'click>=7,<8',
+        'click>=8,<9',
         'fuzzywuzzy>=0.10,<1',
         'markdown-table',
         'pybtex==0.23.0',
-        'pyyaml>=5,<6',
+        'pyyaml>=6,<7',
         'unidecode>=1,<2',
     ],
     extras_require={

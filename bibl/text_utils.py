@@ -45,7 +45,7 @@ def find_match_line_number(text: str, pattern: str, group: int) -> (int, int):
 
 
 def find_entry_line_number(text: str, key: str) -> (int, int):
-    r"""Find the file line number of a pybtex entry.
+    """Find the file line number of a pybtex entry.
 
     :param text: BibTeX file string
     :param key: Entry key
