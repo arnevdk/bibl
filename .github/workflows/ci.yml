@@ -1,0 +1,103 @@
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  flake8:
+    name: Static Analysis (flake8)
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.7
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.7'
+
+      - name: Install dependencies
+        run: |
+          python --version
+          pip install -e .[dev]
+          pip install flake8 anybadge
+
+      - name: Run flake8
+        run: |
+          mkdir -p out
+          set +e
+          flake8 --append-config .flake8 | tee out/lint_result.txt
+          EXIT_CODE=$?
+          set -e
+          num_warnings=$(wc -l < out/lint_result.txt)
+          cat out/lint_result.txt
+          echo "$num_warnings warnings!"
+          anybadge -v=$num_warnings -f=out/flake8.svg -l=flake8 10=green 1000=orange 10000=red
+          if [ $num_warnings -gt 0 ]; then exit 1; fi
+        continue-on-error: true
+
+      - name: Upload flake8 results
+        uses: actions/upload-artifact@v4
+        with:
+          name: flake8-results
+          path: |
+            out/flake8.svg
+            out/lint_result.txt
+
+  unit_test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.7
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.7'
+
+      - name: Install dependencies
+        run: |
+          pip install -e .[dev]
+          pip install pytest coverage
+
+      - name: Run pytest with coverage
+        run: |
+          pytest --cov=bibl/
+          coverage xml
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+
+  rule_list:
+    name: Deploy Rule List
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.7
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pip install -e .[dev]
+          pip install markdown
+
+      - name: Generate rules
+        run: |
+          bibl list-all -m | python -m markdown -x tables > all_rules.html
+
+      - name: Upload rule list
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-rules
+          path: all_rules.html

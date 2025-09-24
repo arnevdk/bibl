@@ -46,6 +46,3 @@ rule_list:
   artifacts:
     paths:
       - all_rules.html
-
-
-
