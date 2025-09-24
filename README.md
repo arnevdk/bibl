@@ -33,7 +33,7 @@ Rule ID|Rule description
 `M01_Article_Year`|Missing required field `year` for entry type `article`
 ...|...
 
-This link provides a [list of all available rules](http://gitlab.com/arne.vandenkerchove/bibl/-/jobs/artifacts/master/file/all_rules.html?job=rule_list)
+This link provides a [list of all available rules](https://nightly.link/arnevdk/bibl/workflows/ci/main/all-rules.zip)
 generated with the default configuration (see Configuration section below).
 
 
@@ -60,7 +60,7 @@ Configuration can also be specified in a yaml format configuration file, provide
 If no configuration file is provided and a `bibl.yml` or `.bibl.yml` file is present in the current working directory,
 this file will be used as a configuration file.
 Command line option configuration will override configuration provided by a file.
-See the default configuration [bibl.yml](https://gitlab.com/arne.vandenkerchove/bibl/-/tree/master/bibl/bibl.yml) for
+See the default configuration [bibl.yml](https://github.com/arnevdk/bibl/blob/main/bibl/bibl.yml) for
 all values that can be overwritten in a configuration file.
 
 Some rules, like the various `S02_*` and `S03_*` rules, are procedurally generated based on the `type_spec` setting.
